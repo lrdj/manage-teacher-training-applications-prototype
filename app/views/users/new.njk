@@ -56,33 +56,120 @@
         }) }}
 
 
-        {% set p1PermissionsHtml %}
+        {% set org1PermissionsHtml %}
           {{ govukCheckboxes({
             idPrefix: "p1",
             name: "permissions",
             fieldset: {
               legend: {
-                text: "Choose permissions",
+                text: "",
                 classes: "govuk-fieldset__legend--s"
               }
             },
             items: [
               {
-                value: "Manage users",
-                text: "Manage users",
-                hint: {
-                  text: "Invite and delete users"
+                value: "Make recommendations",
+                text: "Make recommendations"
+              },
+              {
+                value: "See criminal convictions",
+                text: "See criminal convictions"
+              }
+            ]
+          }) }}
+        {% endset %}
+
+        {% set org2PermissionsHtml %}
+          {{ govukCheckboxes({
+            idPrefix: "org2",
+            name: "permissions",
+            fieldset: {
+              legend: {
+                text: "",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Make decisions",
+                text: "Make decisions"
+              },
+              {
+                value: "Make recommendations",
+                text: "Make recommendations"
+              },
+              {
+                value: "See criminal convictions",
+                text: "See criminal convictions"
+              }
+            ]
+          }) }}
+        {% endset %}
+
+        {% set org3PermissionsHtml %}
+          {{ govukCheckboxes({
+            idPrefix: "org3",
+            name: "permissions",
+            fieldset: {
+              legend: {
+                text: "",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Make decisions",
+                text: "Make decisions"
+              },
+              {
+                value: "Make recommendations",
+                text: "Make recommendations"
+              },
+              {
+                value: "See criminal convictions",
+                text: "See criminal convictions"
+              }
+            ]
+          }) }}
+        {% endset %}
+
+        {% set p1PermissionsHtml %}
+          {{ govukCheckboxes({
+            idPrefix: "p1",
+            name: "organisations",
+            fieldset: {
+              legend: {
+                text: "",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Courses that we ratify ourselves",
+                text: "Courses that we ratify ourselves",
+                conditional: {
+                  html: org3PermissionsHtml
                 }
               },
               {
-                value: "Make decisions",
-                text: "Make decisions",
-                hint: {
-                  text: "Make and change offers"
+                value: "Courses that St Mary’s University ratify",
+                text: "Courses that St Mary’s University ratify",
+                conditional: {
+                  html: org1PermissionsHtml
+                }
+              },
+              {
+                value: "Courses that King’s College ratify",
+                text: "Courses that King’s College ratify",
+                conditional: {
+                  html: org2PermissionsHtml
                 }
               }
             ]
           }) }}
+
+
+
         {% endset %}
 
         {% set p2PermissionsHtml %}
@@ -123,13 +210,10 @@
               classes: "govuk-fieldset__legend--m"
             }
           },
-          hint: {
-            text: "Select at least one provider"
-          },
           items: [
             {
-              value: "Somerset SCITT consortium",
-              text: "Somerset SCITT consortium",
+              value: "Catholic Teaching School Alliance",
+              text: "Catholic Teaching School Alliance",
               conditional: {
                 html: p1PermissionsHtml
               }
